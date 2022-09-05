@@ -7,12 +7,12 @@
 		<title>Recaptcha</title>
 
 		<style>
-      #html_element {
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
+			#html_element {
+				height: 100vh;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
 			@keyframes fade-in {
 				0% {
 					opacity: 0;
@@ -241,49 +241,177 @@
 		</style>
 	</head>
 	<body>
-		<div id="html_element"><div style="width: 304px; height: 78px;"><div><iframe title="reCAPTCHA" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LcLX2EhAAAAAAZAxNph4A77CBbqKJfP-VkuWXo6&amp;co=aHR0cHM6Ly9yZWNhcHRjaGEtZmx1dHRlci1wbHVnaW4uZmlyZWJhc2VhcHAuY29tOjQ0Mw..&amp;hl=pt-BR&amp;v=duyHVVR9Brf6N2GewjkPRfsA&amp;size=normal&amp;cb=fo1ygpm3g7to" width="304" height="78" role="presentation" name="a-dg96cip5hztn" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;"></iframe></div>
-	<script type="text/javascript">
-    function findGetParameter(parameterName) {
-      var result = null,
-        tmp = [];
-      location.search
-        .substr(1)
-        .split("&")
-        .forEach(function (item) {
-          tmp = item.split("=");
-          if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
-        });
-      return result;
-    }
+		<div id="html_element">
+			<div style="width: 304px; height: 78px">
+				<div>
+					<iframe
+						title="reCAPTCHA"
+						src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LcLX2EhAAAAAAZAxNph4A77CBbqKJfP-VkuWXo6&amp;co=aHR0cHM6Ly9yZWNhcHRjaGEtZmx1dHRlci1wbHVnaW4uZmlyZWJhc2VhcHAuY29tOjQ0Mw..&amp;hl=pt-BR&amp;v=duyHVVR9Brf6N2GewjkPRfsA&amp;size=normal&amp;cb=fo1ygpm3g7to"
+						width="304"
+						height="78"
+						role="presentation"
+						name="a-dg96cip5hztn"
+						frameborder="0"
+						scrolling="no"
+						sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"
+					></iframe>
+				</div>
+				<textarea
+					id="g-recaptcha-response"
+					name="g-recaptcha-response"
+					class="g-recaptcha-response"
+					style="
+						width: 250px;
+						height: 40px;
+						border: 1px solid rgb(193, 193, 193);
+						margin: 10px 25px;
+						padding: 0px;
+						resize: none;
+						display: none;
+					"
+				></textarea>
+			</div>
+			<iframe style="display: none"></iframe>
+		</div>
+		<div id="weava-permanent-marker" date="1662392996532"></div>
+		<div id="weava-ui-wrapper">
+			<div class="weava-drop-area-wrapper">
+				<div class="weava-drop-area"></div>
+				<div class="weava-drop-area-text">Drop here!</div>
+			</div>
+		</div>
+		<iframe
+			id="pencil-iframe"
+			class="pencil-window pencil-hidden"
+			src="chrome-extension://ekhldpednaeigfjglnbkpekjdpojiemg/index.html"
+			style="width: 280px; right: -314px"
+		></iframe>
+		<div id="pencil-button" class="pencil-button pencil-hidden">
+			<img
+				class="pencil-button-logo"
+				draggable="false"
+				src="chrome-extension://ekhldpednaeigfjglnbkpekjdpojiemg/assets/Pencil Logo.svg"
+			/>
+			<img
+				class="pencil-button-tab"
+				draggable="false"
+				src="chrome-extension://ekhldpednaeigfjglnbkpekjdpojiemg/assets/keyboard_tab_24px.svg"
+			/>
+		</div>
+		<div id="pencil-hide-button" class="pencil-hide-button">
+			<img
+				class="pencil-hide-button-icon"
+				src="chrome-extension://ekhldpednaeigfjglnbkpekjdpojiemg/assets/icons/hide_button_24.svg"
+			/>
+		</div>
+		<div
+			id="pencil-resizer"
+			class="pencil-resizer pencil-hidden"
+			style="right: 275px"
+		>
+			<div
+				id="pencil-resizer-indicator"
+				class="pencil-resizer-indicator pencil-hidden"
+			></div>
+		</div>
+		<div
+			id="pencil-grabber"
+			class="pencil-grabber pencil-hidden pencil-moving"
+		></div>
+		<div
+			style="
+				background-color: rgb(255, 255, 255);
+				border: 1px solid rgb(204, 204, 204);
+				box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 3px;
+				position: absolute;
+				transition: visibility 0s linear 0.3s, opacity 0.3s linear 0s;
+				opacity: 0;
+				visibility: hidden;
+				z-index: 2000000000;
+				left: 0px;
+				top: -10000px;
+			"
+		>
+			<div
+				style="
+					width: 100%;
+					height: 100%;
+					position: fixed;
+					top: 0px;
+					left: 0px;
+					z-index: 2000000000;
+					background-color: rgb(255, 255, 255);
+					opacity: 0.05;
+				"
+			></div>
+			<div
+				class="g-recaptcha-bubble-arrow"
+				style="
+					border: 11px solid transparent;
+					width: 0px;
+					height: 0px;
+					position: absolute;
+					pointer-events: none;
+					margin-top: -11px;
+					z-index: 2000000000;
+				"
+			></div>
+			<div
+				class="g-recaptcha-bubble-arrow"
+				style="
+					border: 10px solid transparent;
+					width: 0px;
+					height: 0px;
+					position: absolute;
+					pointer-events: none;
+					margin-top: -10px;
+					z-index: 2000000000;
+				"
+			></div>
+			<div style="z-index: 2000000000; position: relative">
+				<iframe
+					title="o desafio reCAPTCHA expira em dois minutos"
+					src="https://www.google.com/recaptcha/api2/bframe?hl=pt-BR&amp;v=duyHVVR9Brf6N2GewjkPRfsA&amp;k=6LcLX2EhAAAAAAZAxNph4A77CBbqKJfP-VkuWXo6"
+					name="c-dg96cip5hztn"
+					frameborder="0"
+					scrolling="no"
+					sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"
+					style="width: 100%; height: 100%"
+				></iframe>
+			</div>
+		</div>
 
-    var onloadCallback = function () {
-      console.log("grecaptcha is ready!");
-      grecaptcha.render('html_element', {
-        'sitekey': findGetParameter("api_key"),
-        'callback': verifyCallback
-      });
-    };
+		<script type="text/javascript">
+			function findGetParameter(parameterName) {
+				var result = null,
+					tmp = [];
+				location.search
+					.substr(1)
+					.split("&")
+					.forEach(function (item) {
+						tmp = item.split("=");
+						if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+					});
+				return result;
+			}
 
-    function verifyCallback(token) {
-      console.log(token);
-      // console.log(grecaptcha.getResponse());
-      try {
-        RecaptchaFlutterChannel.postMessage(token);
-      } catch (e) {
-        console.log("Something wrong...");
-      }
-    }
-  </script>
-	<div id="weava-permanent-marker" date="1662392996532"></div>
-	<div id="weava-ui-wrapper"><div class="weava-drop-area-wrapper"><div class="weava-drop-area"></div>
-<div class="weava-drop-area-text">Drop here!</div>
-</div></div>
-<iframe id="pencil-iframe" class="pencil-window pencil-hidden" src="chrome-extension://ekhldpednaeigfjglnbkpekjdpojiemg/index.html" style="width: 280px; right: -314px;"></iframe>
-<div id="pencil-button" class="pencil-button pencil-hidden"><img class="pencil-button-logo" draggable="false" src="chrome-extension://ekhldpednaeigfjglnbkpekjdpojiemg/assets/Pencil Logo.svg">
-<img class="pencil-button-tab" draggable="false" src="chrome-extension://ekhldpednaeigfjglnbkpekjdpojiemg/assets/keyboard_tab_24px.svg"></div>
-<div id="pencil-hide-button" class="pencil-hide-button"><img class="pencil-hide-button-icon" src="chrome-extension://ekhldpednaeigfjglnbkpekjdpojiemg/assets/icons/hide_button_24.svg"></div>
-<div id="pencil-resizer" class="pencil-resizer pencil-hidden" style="right: 275px;"><div id="pencil-resizer-indicator" class="pencil-resizer-indicator pencil-hidden"></div></div>
-<div id="pencil-grabber" class="pencil-grabber pencil-hidden pencil-moving"></div>
-<div style="background-color: rgb(255, 255, 255); border: 1px solid rgb(204, 204, 204); box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 3px; position: absolute; transition: visibility 0s linear 0.3s, opacity 0.3s linear 0s; opacity: 0; visibility: hidden; z-index: 2000000000; left: 0px; top: -10000px;"><div style="width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 2000000000; background-color: rgb(255, 255, 255); opacity: 0.05;"></div><div class="g-recaptcha-bubble-arrow" style="border: 11px solid transparent; width: 0px; height: 0px; position: absolute; pointer-events: none; margin-top: -11px; z-index: 2000000000;"></div><div class="g-recaptcha-bubble-arrow" style="border: 10px solid transparent; width: 0px; height: 0px; position: absolute; pointer-events: none; margin-top: -10px; z-index: 2000000000;"></div><div style="z-index: 2000000000; position: relative;"><iframe title="o desafio reCAPTCHA expira em dois minutos" src="https://www.google.com/recaptcha/api2/bframe?hl=pt-BR&amp;v=duyHVVR9Brf6N2GewjkPRfsA&amp;k=6LcLX2EhAAAAAAZAxNph4A77CBbqKJfP-VkuWXo6" name="c-dg96cip5hztn" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox" style="width: 100%; height: 100%;"></iframe></div></div>
-</body>
+			var onloadCallback = function () {
+				console.log("grecaptcha is ready!");
+				grecaptcha.render("html_element", {
+					sitekey: findGetParameter("api_key"),
+					callback: verifyCallback,
+				});
+			};
+
+			function verifyCallback(token) {
+				console.log(token);
+				// console.log(grecaptcha.getResponse());
+				try {
+					RecaptchaFlutterChannel.postMessage(token);
+				} catch (e) {
+					console.log("Something wrong...");
+				}
+			}
+		</script>
+	</body>
 </html>
