@@ -1,52 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recaptcha</title>
-
-    <style>
-        msg-error {
-            color: #c65848;
-        }
-
-        .g-recaptcha.error {
-            border: solid 2px #c64848;
-            padding: .2em;
-            width: 19em;
-        }
-    </style>
-</head>
-
-<body>
-    <span class="msg-error error"></span>
-    <div id="recaptcha" class="g-recaptcha" data-sitekey=""></div>
-
-    <button class="btn" id="btn-validate">Validate reCAPTCHA</button>
-</body>
-
-<script src="https://www.google.com/recaptcha/api.js"></script>
-<script>
-    let btn_validate = document.getElementById('btn-validate')
-    let recaptcha = document.getElementById('recaptcha');
-    let msg_error = document.getElementsByClassName('msg-error');
-    btn_validate.click(function () {
-        var captcha = recaptcha,
-            response = grecaptcha.getResponse();
-
-        if (response.length === 0) {
-            msg_error.text("reCAPTCHA is mandatory");
-            if (!captcha.hasClass("error")) {
-                captcha.addClass("error");
-            }
-        } else {
-            msg_error.text('');
-            captcha.removeClass("error");
-            alert('reCAPTCHA marked');
-        }
-    })
-</script>
-
+<html>
+  <head>
+    <title>reCAPTCHA demo: Explicit render for multiple widgets</title>
+    <script type="text/javascript">
+      var verifyCallback = function(response) {
+        alert(response);
+      };
+      var widgetId1;
+      var widgetId2;
+      var onloadCallback = function() {
+        // Renders the HTML element with id 'example1' as a reCAPTCHA widget.
+        // The id of the reCAPTCHA widget is assigned to 'widgetId1'.
+        grecaptcha.render('example3', {
+          'sitekey' : '6LcLX2EhAAAAAAZAxNph4A77CBbqKJfP-VkuWXo6',
+          'callback' : verifyCallback,
+          'theme' : 'dark'
+        });
+      };
+    </script>
+  </head>
+  <body>
+    <form action="?" method="POST">
+      <div id="example3"></div>
+      <br>
+      <input type="submit" value="Submit">
+    </form>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
+    </script>
+  </body>
 </html>
