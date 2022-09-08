@@ -1,32 +1,42 @@
 <html>
-  <head>
-    <title>reCAPTCHA demo: Explicit render for multiple widgets</title>
-    <script type="text/javascript">
-      var verifyCallback = function(response) {
-        alert(response);
-      };
-      var widgetId1;
-      var widgetId2;
-      var onloadCallback = function() {
-        // Renders the HTML element with id 'example1' as a reCAPTCHA widget.
-        // The id of the reCAPTCHA widget is assigned to 'widgetId1'.
-        widgetId1 = grecaptcha.render('example1', {
-          'sitekey' : '',
-          'theme' : 'light'
+<head>
+    <title>Contact</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+    var onloadCallback = function () {
+        grecaptcha.render('dvCaptcha', {
+            'sitekey': '<%=ReCaptcha_Key %>',
+            'callback': function (response) {
+                $.ajax({
+                    type: "POST",
+                    url: "CS.aspx/VerifyCaptcha",
+                    data: "{response: '" + response + "'}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (r) {
+                        var captchaResponse = jQuery.parseJSON(r.d);
+                        if (captchaResponse.success) {
+                            $("[id*=txtCaptcha]").val(captchaResponse.success);
+                            $("[id*=lblAlarm]").hide();
+                        } else {
+                            $("[id*=txtCaptcha]").val("");
+                            $("[id*=lblAlarm]").show();
+                            var error = captchaResponse["error-codes"][0];
+                            $("[id*=lblAlarm]").html("RECaptcha error. " + error);
+                        }
+                    }
+                });
+            }
         });
-      };
+    };
     </script>
-  </head>
-  <body>
-    <!-- The g-recaptcha-response string displays in an alert message upon submit. -->
-    <form action="javascript:alert(grecaptcha.getResponse(widgetId1));">
-      <div id="example1"></div>
-      <br>
-      <input type="submit" value="getResponse">
+</head>
+<body>
+    <form action="?" method="POST">
+        <div id="dvCaptcha" class="g-recaptcha" data-sitekey="6LcLX2EhAAAAAAZAxNph4A77CBbqKJfP-VkuWXo6"></div>
+        <br />
+        <asp:Button ID="btnSubmit" runat="Server" Text="Send" OnClick="btnSubmit_Click" />
+        <asp:Label ID="lblAlarm" runat="server" ForeColor="Red"></asp:Label>
     </form>
-    <br>
-    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
-        async defer>
-    </script>
-  </body>
+</body>
 </html>
